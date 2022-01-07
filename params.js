@@ -1,0 +1,1 @@
+module.exports = ["First ERC20", "MIT", 18, 100000];
