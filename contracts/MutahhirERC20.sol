@@ -5,11 +5,11 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract MutahhirERC20  is IERC20{
       string public symbol;
     string public  name;
-    uint8 public decimals;
-    uint public override totalSupply;
+    uint8 public decimals = 18;
+    uint public override totalSupply = 10000000000;
     uint public _totalTokens;
 
-
+ 
     mapping(address => uint) balance;
 
     // one coin owner allows another user to spend coins on its behalf
@@ -21,12 +21,10 @@ contract MutahhirERC20  is IERC20{
 
     // event Approval(address indexed from, address indexed to, uint256 value);
 
-    constructor (string memory  _name, string memory _symbol, uint8 _decimals, uint _totalSupply ) {
+    constructor (string memory  _name, string memory _symbol) {
         symbol = _symbol;
         name=_name;
-        decimals = _decimals;
-        totalSupply= _totalSupply ;
-        balance[msg.sender] = _totalSupply; 
+        balance[msg.sender] = totalSupply; 
     }
 
     function balanceOf(address _owner) public view override returns (uint256){
@@ -67,7 +65,7 @@ contract MutahhirERC20  is IERC20{
 
     }
 
-    function _mint(address _account, uint256 _amount) public
+    function _mint(address _account, uint256 _amount) public 
     {
         require(_account!=address(0));
         require(_totalTokens + _amount <= totalSupply,"Mutahhir: mint limt reached");

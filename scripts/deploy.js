@@ -9,20 +9,13 @@ async function main() {
     await greeter.deployed();
     console.log("Factory Contract Address", greeter.address);
 
-    //call the function getBytecode 
-    //the params are name, symbil, decimals, totalSupply
-    const childBytecode = await greeter.getBytecode("First ERC20", "MIT", 18, 100000);
-    console.log("Bytecode of the child contract", childBytecode);
-
-    //call the function getAddress
-    //the params are bytecode and salt strength
-    const childAddress = await greeter.getAddress(childBytecode, 1);
-    console.log("Address of the child contract", childAddress);
+    //the params are name, symbol
 
     //call the function deploy
     //the params are bytecode and salt strength
-    const childDeploy = await greeter.deploy(childBytecode, 1);
+    const childDeploy = await greeter.deploy("Second ERC20", "MIT");
     console.log("child contract deployed at address \n--------------------\n", childDeploy);
+    console.log("child contract deployed at address \n--------------------\n", childDeploy.address);
     
 
     //Deploying Upgradable Contract
